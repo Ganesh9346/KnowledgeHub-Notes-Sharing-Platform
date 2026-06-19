@@ -1,0 +1,379 @@
+/* src/styles/global.css */
+/* ============================================================
+   Global Styles for Notes Sharing Application
+   Clean, modern design with a blue/white color scheme
+   ============================================================ */
+
+/* Import Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600;700&family=Playfair+Display:wght@600;700&display=swap');
+
+/* ─── CSS Variables (Design Tokens) ──────────────────────── */
+:root {
+  --primary:       #2563eb;   /* Main blue */
+  --primary-dark:  #1d4ed8;   /* Darker blue for hover */
+  --primary-light: #dbeafe;   /* Light blue for backgrounds */
+  --accent:        #f59e0b;   /* Amber accent */
+  --success:       #10b981;   /* Green for success */
+  --danger:        #ef4444;   /* Red for delete/error */
+  --text:          #1e293b;   /* Dark text */
+  --text-muted:    #64748b;   /* Muted/secondary text */
+  --border:        #e2e8f0;   /* Light border */
+  --bg:            #f8fafc;   /* Page background */
+  --card-bg:       #ffffff;   /* Card background */
+  --radius:        12px;      /* Border radius */
+  --shadow:        0 1px 3px rgba(0,0,0,0.08), 0 4px 16px rgba(0,0,0,0.06);
+  --shadow-lg:     0 8px 32px rgba(0,0,0,0.10);
+  --font:          'DM Sans', sans-serif;
+  --font-display:  'Playfair Display', serif;
+}
+
+/* ─── Reset & Base ──────────────────────────────────────────  */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  font-family: var(--font);
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.6;
+  font-size: 15px;
+}
+
+/* ─── Layout ──────────────────────────────────────────────── */
+.container {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+/* ─── Navbar ──────────────────────────────────────────────── */
+.navbar {
+  background: white;
+  border-bottom: 1px solid var(--border);
+  padding: 14px 0;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  box-shadow: 0 1px 8px rgba(0,0,0,0.06);
+}
+.navbar .container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.navbar-brand {
+  font-family: var(--font-display);
+  font-size: 1.4rem;
+  color: var(--primary);
+  text-decoration: none;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.navbar-brand span { font-size: 1.5rem; }
+.navbar-links {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.navbar-links a, .navbar-links button {
+  padding: 8px 16px;
+  border-radius: 8px;
+  border: none;
+  cursor: pointer;
+  font-size: 0.9rem;
+  font-family: var(--font);
+  font-weight: 500;
+  text-decoration: none;
+  color: var(--text-muted);
+  background: transparent;
+  transition: all 0.18s;
+}
+.navbar-links a:hover { color: var(--primary); background: var(--primary-light); }
+.navbar-links .btn-nav-primary {
+  background: var(--primary);
+  color: white;
+}
+.navbar-links .btn-nav-primary:hover { background: var(--primary-dark); color: white; }
+.navbar-user {
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  padding: 6px 12px;
+  background: var(--primary-light);
+  border-radius: 20px;
+}
+
+/* ─── Buttons ──────────────────────────────────────────────── */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 10px 20px;
+  border-radius: 8px;
+  border: none;
+  cursor: pointer;
+  font-size: 0.9rem;
+  font-family: var(--font);
+  font-weight: 600;
+  transition: all 0.18s;
+  text-decoration: none;
+}
+.btn-primary   { background: var(--primary); color: white; }
+.btn-primary:hover  { background: var(--primary-dark); transform: translateY(-1px); box-shadow: 0 4px 12px rgba(37,99,235,0.3); }
+.btn-danger    { background: var(--danger);  color: white; }
+.btn-danger:hover   { opacity: 0.88; }
+.btn-outline   { background: transparent; border: 2px solid var(--primary); color: var(--primary); }
+.btn-outline:hover  { background: var(--primary-light); }
+.btn-sm { padding: 6px 14px; font-size: 0.82rem; }
+.btn:disabled  { opacity: 0.6; cursor: not-allowed; transform: none !important; }
+
+/* ─── Cards ──────────────────────────────────────────────────  */
+.card {
+  background: var(--card-bg);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  border: 1px solid var(--border);
+  padding: 24px;
+}
+
+/* ─── Form Elements ──────────────────────────────────────────  */
+.form-group { margin-bottom: 18px; }
+.form-group label {
+  display: block;
+  font-weight: 600;
+  font-size: 0.85rem;
+  margin-bottom: 6px;
+  color: var(--text);
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+}
+.form-group input,
+.form-group select,
+.form-group textarea {
+  width: 100%;
+  padding: 10px 14px;
+  border: 1.5px solid var(--border);
+  border-radius: 8px;
+  font-size: 0.95rem;
+  font-family: var(--font);
+  color: var(--text);
+  background: white;
+  transition: border-color 0.18s, box-shadow 0.18s;
+  outline: none;
+}
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+  border-color: var(--primary);
+  box-shadow: 0 0 0 3px rgba(37,99,235,0.12);
+}
+.form-group textarea { resize: vertical; min-height: 80px; }
+
+/* ─── Alert Messages ─────────────────────────────────────── */
+.alert {
+  padding: 12px 16px;
+  border-radius: 8px;
+  font-size: 0.9rem;
+  margin-bottom: 16px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.alert-success { background: #ecfdf5; color: #065f46; border: 1px solid #a7f3d0; }
+.alert-error   { background: #fef2f2; color: #991b1b; border: 1px solid #fecaca; }
+
+/* ─── Page Header ────────────────────────────────────────── */
+.page-header {
+  padding: 36px 0 24px;
+}
+.page-header h1 {
+  font-family: var(--font-display);
+  font-size: 2rem;
+  color: var(--text);
+  margin-bottom: 6px;
+}
+.page-header p { color: var(--text-muted); font-size: 1rem; }
+
+/* ─── Notes Grid ─────────────────────────────────────────── */
+.notes-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 20px;
+  padding: 8px 0 40px;
+}
+
+/* ─── Note Card ─────────────────────────────────────────── */
+.note-card {
+  background: white;
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+  box-shadow: var(--shadow);
+  padding: 20px;
+  transition: transform 0.18s, box-shadow 0.18s;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.note-card:hover { transform: translateY(-3px); box-shadow: var(--shadow-lg); }
+
+.note-card-icon {
+  width: 44px;
+  height: 44px;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.4rem;
+  background: var(--primary-light);
+}
+.note-card-title {
+  font-weight: 700;
+  font-size: 1rem;
+  color: var(--text);
+  line-height: 1.3;
+}
+.note-card-subject {
+  display: inline-block;
+  background: var(--primary-light);
+  color: var(--primary);
+  font-size: 0.78rem;
+  font-weight: 600;
+  padding: 3px 10px;
+  border-radius: 20px;
+  letter-spacing: 0.03em;
+}
+.note-card-description {
+  font-size: 0.88rem;
+  color: var(--text-muted);
+  line-height: 1.5;
+  flex: 1;
+}
+.note-card-meta {
+  font-size: 0.8rem;
+  color: var(--text-muted);
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+.note-card-meta span { display: flex; align-items: center; gap: 3px; }
+.note-card-actions { display: flex; gap: 8px; margin-top: 4px; }
+
+/* ─── Search Bar ──────────────────────────────────────────── */
+.search-bar {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 24px;
+}
+.search-bar input {
+  flex: 1;
+  padding: 11px 16px;
+  border: 1.5px solid var(--border);
+  border-radius: 8px;
+  font-size: 0.95rem;
+  font-family: var(--font);
+  outline: none;
+  transition: border-color 0.18s;
+}
+.search-bar input:focus { border-color: var(--primary); }
+.search-bar button { white-space: nowrap; }
+
+/* ─── Stats Cards (Admin Dashboard) ──────────────────────── */
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 16px;
+  margin-bottom: 32px;
+}
+.stat-card {
+  background: white;
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+  padding: 20px;
+  text-align: center;
+  box-shadow: var(--shadow);
+}
+.stat-card .stat-number {
+  font-family: var(--font-display);
+  font-size: 2.4rem;
+  font-weight: 700;
+  color: var(--primary);
+}
+.stat-card .stat-label { font-size: 0.85rem; color: var(--text-muted); margin-top: 4px; }
+
+/* ─── Auth Pages ──────────────────────────────────────────── */
+.auth-page {
+  min-height: calc(100vh - 64px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 40px 20px;
+}
+.auth-card {
+  width: 100%;
+  max-width: 420px;
+}
+.auth-card h2 {
+  font-family: var(--font-display);
+  font-size: 1.8rem;
+  margin-bottom: 4px;
+}
+.auth-card .auth-subtitle { color: var(--text-muted); margin-bottom: 28px; font-size: 0.95rem; }
+.auth-footer { text-align: center; margin-top: 20px; font-size: 0.9rem; color: var(--text-muted); }
+.auth-footer a { color: var(--primary); text-decoration: none; font-weight: 600; }
+
+/* ─── Hero Section ──────────────────────────────────────── */
+.hero {
+  background: linear-gradient(135deg, var(--primary) 0%, #7c3aed 100%);
+  color: white;
+  padding: 60px 0;
+  text-align: center;
+}
+.hero h1 { font-family: var(--font-display); font-size: 2.8rem; margin-bottom: 12px; }
+.hero p { font-size: 1.1rem; opacity: 0.9; margin-bottom: 28px; }
+.hero-actions { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
+.btn-white { background: white; color: var(--primary); font-weight: 700; }
+.btn-white:hover { background: #f0f4ff; }
+.btn-ghost { background: rgba(255,255,255,0.15); color: white; border: 2px solid rgba(255,255,255,0.4); }
+.btn-ghost:hover { background: rgba(255,255,255,0.25); }
+
+/* ─── Empty State ───────────────────────────────────────── */
+.empty-state {
+  text-align: center;
+  padding: 60px 20px;
+  color: var(--text-muted);
+}
+.empty-state .empty-icon { font-size: 3rem; margin-bottom: 12px; }
+.empty-state h3 { font-size: 1.2rem; color: var(--text); margin-bottom: 8px; }
+
+/* ─── Loading ───────────────────────────────────────────── */
+.loading { text-align: center; padding: 40px; color: var(--text-muted); }
+
+/* ─── Admin Table ───────────────────────────────────────── */
+.admin-table { width: 100%; border-collapse: collapse; font-size: 0.9rem; }
+.admin-table th {
+  background: var(--bg);
+  padding: 10px 14px;
+  text-align: left;
+  font-weight: 600;
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: var(--text-muted);
+  border-bottom: 1px solid var(--border);
+}
+.admin-table td {
+  padding: 12px 14px;
+  border-bottom: 1px solid var(--border);
+  vertical-align: middle;
+}
+.admin-table tr:last-child td { border-bottom: none; }
+.admin-table tr:hover td { background: var(--bg); }
+
+/* ─── Responsive ─────────────────────────────────────────── */
+@media (max-width: 600px) {
+  .hero h1 { font-size: 2rem; }
+  .notes-grid { grid-template-columns: 1fr; }
+  .navbar-links .nav-label { display: none; }
+  .admin-table { display: block; overflow-x: auto; }
+  .search-bar { flex-direction: column; }
+}
